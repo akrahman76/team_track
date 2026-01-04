@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TeamTrack.Application\TeamTrack.Application.csproj" />
+    <ProjectReference Include="..\TeamTrack.Domain\TeamTrack.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
