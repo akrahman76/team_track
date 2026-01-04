@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="TeamTrack.Application/TeamTrack.Application.csproj" />
+  <Project Path="TeamTrack.Domain/TeamTrack.Domain.csproj" />
+  <Project Path="TeamTrack.Infrastructure/TeamTrack.Infrastructure.csproj" />
   <Project Path="TeamTrack/TeamTrack.csproj" />
 </Solution>
