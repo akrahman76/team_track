@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TeamTrack.Domain.Entity;
+using TeamTrack.Domain.Entities;
 
 namespace TeamTrack.Infrastructure.Persistence.Configurations
 {

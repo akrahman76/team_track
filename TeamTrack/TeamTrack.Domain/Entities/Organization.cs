@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TeamTrack.Domain.Common;
 
-namespace TeamTrack.Domain.Entity
+namespace TeamTrack.Domain.Entities
 {
     public class Organization : BaseEntity
     {

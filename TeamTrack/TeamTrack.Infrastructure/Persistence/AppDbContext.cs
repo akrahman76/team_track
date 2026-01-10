@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TeamTrack.Domain.Entities;
-using TeamTrack.Domain.Entity;
 
 namespace TeamTrack.Infrastructure.Persistence
 {

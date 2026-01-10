@@ -4,7 +4,7 @@ using System.Text;
 using TeamTrack.Domain.Common;
 using TeamTrack.Domain.Enums;
 
-namespace TeamTrack.Domain.Entity
+namespace TeamTrack.Domain.Entities
 {
     public class OrganizationMember : BaseEntity
     {
