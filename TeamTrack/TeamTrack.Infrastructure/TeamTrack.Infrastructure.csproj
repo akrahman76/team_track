@@ -19,5 +19,13 @@
     <ProjectReference Include="..\TeamTrack.Application\TeamTrack.Application.csproj" />
     <ProjectReference Include="..\TeamTrack.Domain\TeamTrack.Domain.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Identity\" />
+  </ItemGroup>
 
 </Project>
