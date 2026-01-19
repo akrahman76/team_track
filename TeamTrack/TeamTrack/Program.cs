@@ -27,7 +27,8 @@ builder.Services
         options.Password.RequireUppercase = false;
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequiredLength = 6;
-    });
+    })
+    .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddAuthentication(options=>
 {
