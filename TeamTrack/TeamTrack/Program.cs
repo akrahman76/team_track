@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using TeamTrack.Infrastructure.Persistence;
 using TeamTrack.Infrastructure.Identity;
+using TeamTrack.Application.Interfaces;
+using TeamTrack.Application.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -43,9 +45,12 @@ builder.Services.AddAuthentication(options=>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
     };
 });
+
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+
     
 var app = builder.Build();
 
