@@ -73,7 +73,7 @@ builder.Services.AddAuthorization(Options =>
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IOrganizationAuthorizationService, OrganizationAuthorizationService>();
 
-builder.Services.AddSingleton<IAuthorizationHandler, OrganizationRoleAuthorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, OrganizationRoleAuthorizationHandler>();
 
 builder.Services.AddHttpContextAccessor();
     
