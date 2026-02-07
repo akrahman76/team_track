@@ -3,7 +3,7 @@ using TeamTrack.Domain.Enums;
 
 namespace TeamTrack.Application.Common;
 
-public interface IOrgranizationAuthorizationService
+public interface IOrganizationAuthorizationService
 {
     Task<bool> HasRequiredRoleAsync(
         Guid userId, 
