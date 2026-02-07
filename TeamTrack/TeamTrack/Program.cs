@@ -4,9 +4,12 @@ using TeamTrack.Infrastructure.Persistence;
 using TeamTrack.Infrastructure.Identity;
 using TeamTrack.Application.Interfaces;
 using TeamTrack.Application.Services;
+using TeamTrack.Application.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using TeamTrack.Application.Auth.Requirements;
+using TeamTrack.Domain.Enums;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,7 +53,24 @@ builder.Services.AddAuthentication(options=>
     };
 });
 
+builder.Services.AddAuthorization(Options =>
+{
+    Options.AddPolicy("OrgMember", policy =>
+        policy.Requirements.Add(
+            new OrganizationRoleRequirement(OrganizationRole.Member)));
+
+    Options.AddPolicy("OrgAdmin", policy =>
+        policy.Requirements.Add(
+            new OrganizationRoleRequirement(OrganizationRole.Admin)));
+    
+    Options.AddPolicy("OrgOwner", policy =>
+        policy.Requirements.Add(
+            new OrganizationRoleRequirement(OrganizationRole.Owner)));
+});
+
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+
+builder.Services.AddScoped<IOrganizationAuthorizationService, OrganizationAuthorizationService>();
 
     
 var app = builder.Build();
