@@ -1,6 +1,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
-using TeamTrack.Application.Common;
+using TeamTrack.Application.Common.Interfaces;
 using TeamTrack.Domain.Enums;
 using TeamTrack.Infrastructure.Persistence;
 

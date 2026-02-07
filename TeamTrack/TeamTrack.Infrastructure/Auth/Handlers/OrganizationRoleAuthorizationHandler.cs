@@ -3,7 +3,7 @@ using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
-using TeamTrack.Application.Common;
+using TeamTrack.Application.Common.Interfaces;
 using TeamTrack.Application.Auth.Requirements;
 
 namespace TeamTrack.Infrastructure.Auth.Handlers;
@@ -12,6 +12,14 @@ public class OrganizationRoleAuthorizationHandler: AuthorizationHandler<Organiza
 {
     private readonly IOrganizationAuthorizationService _authService;
     private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public OrganizationRoleAuthorizationHandler(
+        IOrganizationAuthorizationService authService,
+        IHttpContextAccessor httpContextAccessor)
+    {
+        _authService = authService;
+        _httpContextAccessor = httpContextAccessor;
+    }
 
       protected override async Task HandleRequirementAsync(
         AuthorizationHandlerContext context,

@@ -20,4 +20,8 @@
     <ProjectReference Include="..\TeamTrack.Infrastructure\TeamTrack.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\" />
+  </ItemGroup>
+
 </Project>

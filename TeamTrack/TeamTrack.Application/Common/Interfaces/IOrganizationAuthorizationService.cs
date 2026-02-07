@@ -1,7 +1,7 @@
 using System;
 using TeamTrack.Domain.Enums;
 
-namespace TeamTrack.Application.Common;
+namespace TeamTrack.Application.Common.Interfaces;
 
 public interface IOrganizationAuthorizationService
 {

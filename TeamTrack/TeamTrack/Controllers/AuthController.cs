@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using TeamTrack.Infrastructure.Identity;
-using TeamTrack.Application.Interfaces;
+using TeamTrack.Application.Common.Interfaces;
 using TeamTrack.Domain.Entities;
 
 namespace TeamTrack.Controllers

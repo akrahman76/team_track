@@ -2,14 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using TeamTrack.Infrastructure.Persistence;
 using TeamTrack.Infrastructure.Identity;
-using TeamTrack.Application.Interfaces;
 using TeamTrack.Application.Services;
-using TeamTrack.Application.Authorization;
+using TeamTrack.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using TeamTrack.Application.Auth.Requirements;
 using TeamTrack.Domain.Enums;
+using TeamTrack.Infrastructure.Auth;
+using Microsoft.AspNetCore.Authorization;
+using TeamTrack.Infrastructure.Auth.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,9 +71,11 @@ builder.Services.AddAuthorization(Options =>
 });
 
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
-
 builder.Services.AddScoped<IOrganizationAuthorizationService, OrganizationAuthorizationService>();
 
+builder.Services.AddSingleton<IAuthorizationHandler, OrganizationRoleAuthorizationHandler>();
+
+builder.Services.AddHttpContextAccessor();
     
 var app = builder.Build();
 

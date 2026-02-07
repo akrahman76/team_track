@@ -1,6 +1,6 @@
 using System;
 
-namespace TeamTrack.Application.Interfaces;
+namespace TeamTrack.Application.Common.Interfaces;
 
 public interface IJwtTokenService
 {
