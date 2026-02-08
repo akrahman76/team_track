@@ -11,6 +11,13 @@ namespace TeamTrack.Controllers
     [ApiController]
     public class OrgController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public OrgController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         [Authorize(Policy = "OrgAdmin")]
         [HttpPost("organizations/{organizationId}/projects")]
         public async Task<IActionResult> CreateProject(
@@ -23,15 +30,9 @@ namespace TeamTrack.Controllers
                     request.Name,
                     request.Description);
                     
-                //TODO: Need to implement the command handler and repository before this can be uncommented
-                // var projectId = await _mediator.Send(command, cancellationToken);
-                
-                // return CreatedAtAction(
-                //     nameof(GetProjectById),
-                //     new { organizationId, projectId },
-                //     null);
+                var projectId = await _mediator.Send(command, cancellationToken);
 
-                return Ok();
+                return CreatedAtAction(nameof(CreateProject), new { organizationId, projectId }, null);
             }
     }
 }

@@ -12,6 +12,8 @@ using TeamTrack.Domain.Enums;
 using TeamTrack.Infrastructure.Auth;
 using Microsoft.AspNetCore.Authorization;
 using TeamTrack.Infrastructure.Auth.Handlers;
+using TeamTrack.Application.Command;
+using TeamTrack.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,10 +72,13 @@ builder.Services.AddAuthorization(Options =>
             new OrganizationRoleRequirement(OrganizationRole.Owner)));
 });
 
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateProjectCommand).Assembly));
+
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IOrganizationAuthorizationService, OrganizationAuthorizationService>();
-
 builder.Services.AddScoped<IAuthorizationHandler, OrganizationRoleAuthorizationHandler>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddHttpContextAccessor();
     
