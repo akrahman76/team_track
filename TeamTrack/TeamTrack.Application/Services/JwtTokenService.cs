@@ -1,5 +1,5 @@
 using System;
-using TeamTrack.Application.Interfaces;
+using TeamTrack.Application.Common.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;

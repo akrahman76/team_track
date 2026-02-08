@@ -7,8 +7,10 @@ namespace TeamTrack.Domain.Entities
 {
     public class Project : BaseEntity
     {
+        public Guid Id { get; private set; }
         public Guid OrganizationId { get; private set; }
         public string Name { get; private set; }
+        public string? Description { get; private set; }
 
         private Project() { }
 
@@ -16,6 +18,22 @@ namespace TeamTrack.Domain.Entities
         {
             OrganizationId = organizationId;
             Name = name;
+        }
+
+        public static Project Create(
+            Guid organizationId,
+            string name,
+            string? description)
+        {
+            var project = new Project
+            {
+                Id = Guid.NewGuid(),
+                OrganizationId = organizationId,
+                Name = name,
+                Description = description
+            };
+
+            return project;
         }
     }
 }

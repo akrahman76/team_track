@@ -2,11 +2,18 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using TeamTrack.Infrastructure.Persistence;
 using TeamTrack.Infrastructure.Identity;
-using TeamTrack.Application.Interfaces;
 using TeamTrack.Application.Services;
+using TeamTrack.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using TeamTrack.Application.Auth.Requirements;
+using TeamTrack.Domain.Enums;
+using TeamTrack.Infrastructure.Auth;
+using Microsoft.AspNetCore.Authorization;
+using TeamTrack.Infrastructure.Auth.Handlers;
+using TeamTrack.Application.Command;
+using TeamTrack.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,8 +57,30 @@ builder.Services.AddAuthentication(options=>
     };
 });
 
-builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+builder.Services.AddAuthorization(Options =>
+{
+    Options.AddPolicy("OrgMember", policy =>
+        policy.Requirements.Add(
+            new OrganizationRoleRequirement(OrganizationRole.Member)));
 
+    Options.AddPolicy("OrgAdmin", policy =>
+        policy.Requirements.Add(
+            new OrganizationRoleRequirement(OrganizationRole.Admin)));
+    
+    Options.AddPolicy("OrgOwner", policy =>
+        policy.Requirements.Add(
+            new OrganizationRoleRequirement(OrganizationRole.Owner)));
+});
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateProjectCommand).Assembly));
+
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+builder.Services.AddScoped<IOrganizationAuthorizationService, OrganizationAuthorizationService>();
+builder.Services.AddScoped<IAuthorizationHandler, OrganizationRoleAuthorizationHandler>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddHttpContextAccessor();
     
 var app = builder.Build();
 

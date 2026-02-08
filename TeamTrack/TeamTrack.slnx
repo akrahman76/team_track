@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="TeamTrack.Application.UnitTests/TeamTrack.Application.UnitTests.csproj" />
   <Project Path="TeamTrack.Application/TeamTrack.Application.csproj" />
   <Project Path="TeamTrack.Domain/TeamTrack.Domain.csproj" />
   <Project Path="TeamTrack.Infrastructure/TeamTrack.Infrastructure.csproj" />
