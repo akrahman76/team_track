@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -34,5 +35,21 @@ namespace TeamTrack.Controllers
 
                 return CreatedAtAction(nameof(CreateProject), new { organizationId, projectId }, null);
             }
+
+        [HttpPost("organizations")]
+        public async Task<IActionResult> CreateOrganization(
+            [FromBody] CreateOrganizationRequest request,
+            CancellationToken cancellationToken)
+        {
+            var currentUserId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            var command = new CreateOrganizationCommand(
+                request.Name,
+                currentUserId);
+
+            var organizationId = await _mediator.Send(command, cancellationToken);
+
+            return CreatedAtAction(nameof(CreateOrganization), new { organizationId }, null);
+        }
     }
 }

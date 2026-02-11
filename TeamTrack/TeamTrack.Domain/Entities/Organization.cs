@@ -7,6 +7,7 @@ namespace TeamTrack.Domain.Entities
 {
     public class Organization : BaseEntity
     {
+        public Guid Id { get; private set; }
         public string Name { get; private set; } = default!;
 
         private readonly List<OrganizationMember> _members = new();
@@ -21,6 +22,15 @@ namespace TeamTrack.Domain.Entities
         public void AddMember(OrganizationMember member)
         {
             _members.Add(member);
+        }
+
+        public static Organization Create(string name)
+        {
+            return new Organization
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            };
         }
     }
 }
