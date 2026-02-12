@@ -33,5 +33,14 @@ namespace TeamTrack.Domain.Entities
         {
             Status = TaskStatus.Done;
         }
+
+        public static TaskItem CreateTaskItem(
+            Guid projectId, 
+            string title)
+        {
+            var TaskItem = new TaskItem(projectId, title);
+            
+            return TaskItem;
+        }
     }
 }
