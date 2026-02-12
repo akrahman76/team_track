@@ -29,7 +29,6 @@
     <Folder Include="Auth\" />
     <Folder Include="Auth\Handlers\" />
     <Folder Include="Identity\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
