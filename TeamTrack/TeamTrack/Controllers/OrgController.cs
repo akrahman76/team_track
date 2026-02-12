@@ -35,8 +35,9 @@ namespace TeamTrack.Controllers
 
                 return CreatedAtAction(nameof(CreateProject), new { organizationId, projectId }, null);
             }
-
-        [HttpPost("organizations")]
+        
+        [Authorize(Policy = "OrgAdmin")]
+        [HttpPost("organizations/create")]
         public async Task<IActionResult> CreateOrganization(
             [FromBody] CreateOrganizationRequest request,
             CancellationToken cancellationToken)
