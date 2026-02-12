@@ -6,8 +6,8 @@ namespace TeamTrack.Domain.Enums
 {
     public enum OrganizationRole
     {
-        Owner,
+        Member,
         Admin,
-        Member
+        Owner
     }
 }
