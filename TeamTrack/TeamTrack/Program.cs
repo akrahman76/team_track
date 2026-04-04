@@ -81,6 +81,7 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
 builder.Services.AddScoped<IOrganizationMemberRepository, OrganizationMemberRepository>();
+builder.Services.AddScoped<ITaskItemRepository, TaskItemRepository>();
 
 
 builder.Services.AddHttpContextAccessor();

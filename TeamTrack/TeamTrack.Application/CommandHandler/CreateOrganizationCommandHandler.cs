@@ -34,7 +34,7 @@ public sealed class CreateOrganizationCommandHandler
         var organizationMember = new OrganizationMember(
             organization.Id, 
             request.CurrentUserId,
-            OrganizationRole.Owner);
+            OrganizationRole.Admin);
 
         organizationMemberRepository.Add(organizationMember);
 
