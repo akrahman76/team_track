@@ -4,7 +4,13 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <EnableDefaultItems>false</EnableDefaultItems>
   </PropertyGroup>
+
+  <!-- Explicitly include all source files since default items are disabled -->
+  <ItemGroup>
+    <Compile Include="**/*.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.1" />
