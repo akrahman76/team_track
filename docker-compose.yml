@@ -25,5 +25,15 @@ services:
     depends_on:
       - postgres
 
+  webapi:
+    build: .                          # Tells Docker to look for a 'Dockerfile' in this same folder
+    container_name: teamtrack-api
+    ports:
+      - "8080:8080"                   # Changes depending on what port the app listens to
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=teamtrack;Username=postgres;Password=postgres
+    depends_on:
+      - postgres                      # Makes sure the database starts before your app tries to connect
+
 volumes:
   postgres_data:
