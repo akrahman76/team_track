@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="**/*.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Auth\Handlers\" />
     <Folder Include="Identity\" />
