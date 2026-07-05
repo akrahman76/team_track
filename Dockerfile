@@ -2,8 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build-env
 WORKDIR /src
 
-# Copy only the project files and build props first for a clean restore cache
-COPY Directory.Build.props ./
+# Copy only the project files first for a clean restore cache
 COPY TeamTrack/*.csproj ./TeamTrack/
 COPY TeamTrack.Application/*.csproj ./TeamTrack.Application/
 COPY TeamTrack.Domain/*.csproj ./TeamTrack.Domain/
