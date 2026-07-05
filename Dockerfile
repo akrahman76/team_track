@@ -7,8 +7,9 @@ COPY TeamTrack/*.csproj ./TeamTrack/
 RUN dotnet restore TeamTrack/
 
 # Copy the remaining source code and publish
+# Copy the remaining source code and publish
 COPY . ./
-RUN dotnet publish TeamTrack/*.csproj -c Release -o /app/publish
+RUN dotnet publish TeamTrack/*.csproj -c Release -o /app/publish -p:EnableDefaultResourceItems=false
 
 # 2. Build the runtime image (keeps the final image size small for ECR)
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
